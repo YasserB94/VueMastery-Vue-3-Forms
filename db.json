@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "title": "",
+      "description": "",
+      "category": "",
+      "catering": false,
+      "liveMusic": false,
+      "pets": "",
+      "id": 1
+    },
+    {
+      "title": "Hi",
+      "description": "mom",
+      "category": "nature",
+      "catering": false,
+      "liveMusic": true,
+      "pets": "0",
+      "id": 2
+    },
+    {
+      "title": "",
+      "description": "",
+      "category": "",
+      "catering": false,
+      "liveMusic": false,
+      "pets": "",
+      "id": 3
+    }
+  ]
+}

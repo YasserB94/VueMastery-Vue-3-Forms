@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "mockserver": "json-server --port 5174 --watch db.json",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "@vueuse/core": "^9.6.0",
+    "axios": "^1.2.0",
     "pinia": "^2.0.26",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
