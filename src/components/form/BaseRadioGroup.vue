@@ -6,8 +6,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  id: {
+    type: [String, Number],
+    required: true,
+  },
   options: {
-    type: Array,
+    type: Array[{ option: String, label: String }],
     required: true,
   },
   vertical: {
@@ -27,7 +31,7 @@ const updateValue = (e) => {
 
 <template>
   <component
-    v-for="option in options"
+    v-for="(option, index) in options"
     :key="option.value"
     :is="props.vertical ? 'div' : 'span'"
     :class="vertical ? 'mt-2' : 'mr-2'"
@@ -35,6 +39,7 @@ const updateValue = (e) => {
     <BaseRadio
       :label="option.label"
       :value="option.value"
+      :id="`${props.id}-${index}-${option.label}`"
       :modelValue="modelValue"
       :name="name"
       @update:modelValue="updateValue"

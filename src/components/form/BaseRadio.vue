@@ -4,6 +4,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  id: {
+    type: [String, Number],
+    required: true,
+  },
   label: {
     type: String,
   },
@@ -29,13 +33,14 @@ const updateValue = () => {
   <input
     v-bind="$attrs"
     :value="props.value"
-    :name="`radio-${props.name}`"
+    :id="props.id"
+    :name="`${props.name}`"
     type="radio"
     @change="updateValue"
   />
   <label
     v-show="!labelIsHidden"
-    :for="`radio-${props.name}`"
+    :for="props.id"
     class="capitalize"
     >{{ props.label || props.name }}</label
   >

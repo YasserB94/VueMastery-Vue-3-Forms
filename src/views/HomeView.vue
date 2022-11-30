@@ -25,9 +25,9 @@ const sendForm = async () => {
   try {
     const response = await axios.post(MOCK_JSON_SERVER_ENDPOINT_URL, event);
     console.log(`Submitted form: ${response.status} : ${response.statusText}`);
-  }catch (e){
-    console.warn('Something went wrong during form submit')
-    console.table({"Error Message":e.message,"Error Code":e.code})
+  } catch (e) {
+    console.warn("Something went wrong during form submit");
+    console.table({ "Error Message": e.message, "Error Code": e.code });
     console.warn(`Make sure you run the mockserver`);
     console.log(`npm run mockserver from root directory`);
   }
@@ -53,27 +53,50 @@ const categories = [
     </header>
     <main>
       <form @submit.prevent="sendForm" class="my-20 space-y-2.5">
-        <div class="form-item">
-          <BaseInput name="title" v-model="event.title" />
-        </div>
-        <div class="form-item">
-          <BaseInput name="description" v-model="event.description" />
-        </div>
+        <h1>Create an Event</h1>
+        <fieldset>
+          <legend>Name and describe your event</legend>
+          <div class="form-item">
+            <BaseInput
+              name="title"
+              id="event-form-title"
+              v-model="event.title"
+            />
+          </div>
+          <div class="form-item">
+            <BaseInput
+              name="description"
+              id="event-form-description"
+              v-model="event.description"
+            />
+          </div>
+        </fieldset>
+
         <div class="form-item">
           <BaseSelect
+            id="event-form-category"
             name="category"
             :options="categories"
             v-model="event.category"
           />
         </div>
         <div class="space-x-2">
-          <BaseCheckbox name="catering" v-model="event.catering" />
-          <BaseCheckbox name="live-music" v-model="event.liveMusic" />
+          <BaseCheckbox
+            name="catering"
+            id="event-form-catering"
+            v-model="event.catering"
+          />
+          <BaseCheckbox
+            name="live-music"
+            id="event-form-music"
+            v-model="event.liveMusic"
+          />
         </div>
         <div>
           <BaseRadioGroup
             v-model="event.pets"
             name="pets"
+            id="event-form-pets"
             :options="petOptions"
           />
         </div>
