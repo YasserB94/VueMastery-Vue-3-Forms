@@ -7,9 +7,9 @@ const props = defineProps({
   label: {
     type: String,
   },
-  value:{
-    type:[String,Number],
-    required:true
+  value: {
+    type: [String, Number],
+    required: true,
   },
   labelIsHidden: {
     type: Boolean,
@@ -26,11 +26,19 @@ const updateValue = () => {
 </script>
 
 <template>
-  <label v-show="!labelIsHidden" :for="`radio-${props.name}`" class="capitalize">{{
-    props.label || props.name
-  }}</label>
   <input
-      v-bind="$attrs" :value="props.value" :name="`radio-${props.name}`"  type="radio" @change="updateValue" />
+    v-bind="$attrs"
+    :value="props.value"
+    :name="`radio-${props.name}`"
+    type="radio"
+    @change="updateValue"
+  />
+  <label
+    v-show="!labelIsHidden"
+    :for="`radio-${props.name}`"
+    class="capitalize"
+    >{{ props.label || props.name }}</label
+  >
 </template>
 
 <style scoped></style>

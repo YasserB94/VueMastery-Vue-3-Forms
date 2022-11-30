@@ -2,7 +2,7 @@
 import { reactive } from "vue";
 import BaseCheckbox from "../components/form/BaseCheckbox.vue";
 import BaseInput from "../components/form/BaseInput.vue";
-import BaseRadio from "../components/form/BaseRadio.vue";
+import BaseRadioGroup from "../components/form/BaseRadioGroup.vue";
 import BaseSelect from "../components/form/BaseSelect.vue";
 let event = reactive({
   title: "",
@@ -10,7 +10,12 @@ let event = reactive({
   category: "",
   catering: false,
   liveMusic: false,
+  pets: "",
 });
+const petOptions = [
+  { label: "Yes", value: 1 },
+  { label: "No", value: "0" },
+];
 const logEvent = () => {
   console.table(JSON.parse(JSON.stringify(event)));
 };
@@ -49,18 +54,12 @@ const categories = [
           <BaseCheckbox name="catering" v-model="event.catering" />
           <BaseCheckbox name="live-music" v-model="event.liveMusic" />
         </div>
-        <div class="form-item">
-          <p>Pets</p>
-          <div class="form-radio-group">
-            <BaseRadio
-              name="pets"
-              v-model="event.pets"
-              :value="1"
-              label="Yes"
-            />
-
-            <BaseRadio name="pets" v-model="event.pets" :value="0" label="No" />
-          </div>
+        <div >
+          <BaseRadioGroup
+            v-model="event.pets"
+            name="pets"
+            :options="petOptions"
+          />
         </div>
         <div class="form-item"></div>
         <button type="submit">Say hi to mom</button>
@@ -72,8 +71,5 @@ const categories = [
 <style scoped>
 .form-item {
   @apply flex flex-col;
-}
-.form-radio-group{
-  @apply space-x-2
 }
 </style>
