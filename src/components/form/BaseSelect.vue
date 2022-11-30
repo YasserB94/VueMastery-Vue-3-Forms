@@ -4,12 +4,9 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  type: {
-    type: String,
-    default: "text",
-  },
-  placeholder: {
-    type: String,
+  options: {
+    type: Array,
+    required: true,
   },
   label: {
     type: String,
@@ -27,18 +24,27 @@ const updateValue = (e) => {
   emit("update:modelValue", e.target.value);
 };
 </script>
+
 <template>
   <label v-show="!labelIsHidden" :for="props.name" class="capitalize">{{
     props.label || props.name
   }}</label>
-  <input
+  <select
     v-bind="$attrs"
     :name="props.name"
-    :type="props.type"
-    :class="[{ 'placeholder:capitalize': !props.placeholder }]"
-    :placeholder="props.placeholder || `${props.name}...`"
-    @input="updateValue"
-  />
+    @change="updateValue"
+    :value="modelValue"
+
+  >
+    <option value="" disabled selected hidden>{{ props.label||props.name }}...</option>
+    <option
+      v-for="(option, index) in props.options"
+      :key="`${index}${option}`"
+      :selected="option === modelValue"
+    >
+      {{ option }}
+    </option>
+  </select>
 </template>
 
 <style scoped></style>
